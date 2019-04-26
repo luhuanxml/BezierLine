@@ -41,6 +41,9 @@ class LoveLayout : ConstraintLayout {
         mHeight = measuredHeight
     }
 
+    //true为飞机 false为无人机
+    private var bool:Boolean=true
+
     fun addImage() {
         val imageView = ImageView(this.context)
         val parentParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
@@ -48,7 +51,16 @@ class LoveLayout : ConstraintLayout {
         parentParams.leftToLeft = 0
         parentParams.rightToRight = 0
         imageView.layoutParams = parentParams
-        imageView.setImageDrawable(plain)
+        bool = when {
+            bool -> {
+                imageView.setImageDrawable(plain)
+                false
+            }
+            else -> {
+                imageView.setImageDrawable(uav)
+                true
+            }
+        }
         addView(imageView)
 
         //开启动画
